@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
  import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedProducts,removeSelectedProducts } from '../redux/actions/productActions';
+import { Button } from 'semantic-ui-react';
 
 const ProductDetails = () => {
+  const navigate =useNavigate();
+  const handleNavigate =()=>{
+    navigate('/');
+  }
     const product = useSelector((state) => state.product);
   const { image, title, price, category, description } = product;
     const {productId} = useParams();
@@ -54,11 +59,13 @@ const ProductDetails = () => {
                   </div>
                   <div className ="visible content">Add to Cart</div>
                 </div>
+                <div>&nbsp; <Button onClick={handleNavigate}>Back</Button></div>
               </div>
             </div>
           </div>
         </div>
       )}
+       
     </div>
   )
 }
